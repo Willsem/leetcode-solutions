@@ -1,18 +1,18 @@
-type Stack struct {
-	data []int
+type Stack[T any] struct {
+	data []T
 }
 
-func NewStack() *Stack {
-	return &Stack{
-		data: make([]int, 0),
+func NewStack[T any]() *Stack[T] {
+	return &Stack[T]{
+		data: make([]T, 0),
 	}
 }
 
-func (s *Stack) Push(el int) {
+func (s *Stack[T]) Push(el T) {
 	s.data = append(s.data, el)
 }
 
-func (s *Stack) Pop() int {
+func (s *Stack[T]) Pop() T {
 	defer func() {
 		s.data = s.data[:len(s.data)-1]
 	}()
@@ -20,14 +20,14 @@ func (s *Stack) Pop() int {
 	return s.Peek()
 }
 
-func (s *Stack) Peek() int {
+func (s *Stack[T]) Peek() T {
 	return s.data[len(s.data)-1]
 }
 
-func (s *Stack) Size() int {
+func (s *Stack[T]) Size() int {
 	return len(s.data)
 }
 
-func (s *Stack) IsEmpty() bool {
+func (s *Stack[T]) IsEmpty() bool {
 	return s.Size() == 0
 }
