@@ -23,15 +23,16 @@ type SeatManager struct {
 }
 
 func Constructor(n int) SeatManager {
-	h := &IntHeap{}
-	heap.Init(h)
-
-	for i := 1; i <= n; i++ {
-		heap.Push(h, i)
+	arr := make([]int, n)
+	for i := range arr {
+		arr[i] = i + 1
 	}
 
+	h := IntHeap(arr)
+	heap.Init(&h)
+
 	return SeatManager{
-		heap: h,
+		heap: &h,
 	}
 }
 
