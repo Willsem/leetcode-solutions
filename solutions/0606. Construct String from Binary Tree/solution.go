@@ -1,4 +1,7 @@
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 /**
  * Definition for a binary tree node.
@@ -9,29 +12,29 @@ import "strconv"
  * }
  */
 func tree2str(root *TreeNode) string {
-	res := ""
+	res := strings.Builder{}
 
 	var dfs func(node *TreeNode)
 	dfs = func(node *TreeNode) {
-		res += strconv.Itoa(node.Val)
+		res.WriteString(strconv.Itoa(node.Val))
 
 		if node.Left != nil {
-			res += "("
+			res.WriteString("(")
 			dfs(node.Left)
-			res += ")"
+			res.WriteString(")")
 		}
 
 		if node.Right != nil {
 			if node.Left == nil {
-				res += "()"
+				res.WriteString("()")
 			}
 
-			res += "("
+			res.WriteString("(")
 			dfs(node.Right)
-			res += ")"
+			res.WriteString(")")
 		}
 	}
 
 	dfs(root)
-	return res
+	return res.String()
 }
