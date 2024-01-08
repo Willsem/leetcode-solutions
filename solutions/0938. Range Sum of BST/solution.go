@@ -7,27 +7,18 @@
  * }
  */
 func rangeSumBST(root *TreeNode, low int, high int) int {
-	res := 0
-
-	var dfs func(node *TreeNode)
-	dfs = func(node *TreeNode) {
-		if node == nil {
-			return
-		}
-
-		if node.Val >= low && node.Val <= high {
-			res += node.Val
-
-			dfs(node.Left)
-			dfs(node.Right)
-		} else if node.Val < low {
-			dfs(node.Right)
-		} else {
-			dfs(node.Left)
-		}
+	if root == nil {
+		return 0
 	}
 
-	dfs(root)
+	switch {
+	case root.Val < low:
+		return rangeSumBST(root.Right, low, high)
 
-	return res
+	case root.Val <= high:
+		return root.Val + rangeSumBST(root.Left, low, high) + rangeSumBST(root.Right, low, high)
+
+	default:
+		return rangeSumBST(root.Left, low, high)
+	}
 }
