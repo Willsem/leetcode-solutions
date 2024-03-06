@@ -6,19 +6,24 @@
  * }
  */
 func hasCycle(head *ListNode) bool {
-	ptr1 := head
-	ptr2 := head
+	if head == nil || head.Next == nil {
+		return false
+	}
 
-	for ptr1 != nil && ptr2 != nil {
-		ptr1 = ptr1.Next
-		ptr2 = ptr2.Next
-		if ptr2 != nil {
-			ptr2 = ptr2.Next
-		}
+	tempByOne := head.Next
+	tempByTwo := head.Next.Next
 
-		if ptr1 != nil && ptr2 != nil && ptr1 == ptr2 {
+	for {
+		if tempByOne == tempByTwo {
 			return true
 		}
+
+		if tempByOne == nil || tempByTwo == nil || tempByTwo.Next == nil {
+			return false
+		}
+
+		tempByOne = tempByOne.Next
+		tempByTwo = tempByTwo.Next.Next
 	}
 
 	return false
