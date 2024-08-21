@@ -36,10 +36,3 @@ func strangePrinter(s string) int {
 
 	return solve(0, n-1) + 1
 }
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
