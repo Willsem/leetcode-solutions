@@ -1,5 +1,3 @@
-import "math"
-
 func minExtraChar(s string, dictionary []string) int {
 	maxVal := len(s) + 1
 	dp := make([]int, len(s)+1)
@@ -17,7 +15,7 @@ func minExtraChar(s string, dictionary []string) int {
 		dp[i] = dp[i-1] + 1
 		for l := 1; l <= i; l++ {
 			if dictionarySet[s[i-l:i]] {
-				dp[i] = int(math.Min(float64(dp[i]), float64(dp[i-l])))
+				dp[i] = min(dp[i], dp[i-l])
 			}
 		}
 	}
