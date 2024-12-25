@@ -15,11 +15,11 @@ func largestValues(root *TreeNode) []int {
 			return
 		}
 
-		if depth >= len(result) {
+		if len(result) <= depth {
 			result = append(result, node.Val)
-		} else if result[depth] < node.Val {
-			result[depth] = node.Val
 		}
+
+		result[depth] = max(result[depth], node.Val)
 
 		dfs(node.Left, depth+1)
 		dfs(node.Right, depth+1)
