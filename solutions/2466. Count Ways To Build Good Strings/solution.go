@@ -1,4 +1,4 @@
-const mod = 1_000_000_007
+const mod = 1e9 + 7
 
 func countGoodStrings(low, high, zero, one int) int {
 	dp := make([]int, high+1)
@@ -7,17 +7,17 @@ func countGoodStrings(low, high, zero, one int) int {
 
 	for i := 1; i <= high; i++ {
 		if i >= zero {
-			dp[i] = dp[i-zero]
+			dp[i] += dp[i-zero]
 		}
 
 		if i >= one {
 			dp[i] += dp[i-one]
-			dp[i] %= mod
 		}
 
+		dp[i] %= mod
+
 		if i >= low && i <= high {
-			ans += dp[i]
-			ans %= mod
+			ans = (ans + dp[i]) % mod
 		}
 	}
 
