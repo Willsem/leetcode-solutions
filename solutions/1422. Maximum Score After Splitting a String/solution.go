@@ -6,7 +6,7 @@ func maxScore(s string) int {
 		}
 	}
 
-	max := 0
+	res := 0
 	for i := 0; i < len(s)-1; i++ {
 		if s[i] == '0' {
 			countZeros++
@@ -14,10 +14,8 @@ func maxScore(s string) int {
 			countOnes--
 		}
 
-		if max < countOnes+countZeros {
-			max = countOnes + countZeros
-		}
+		res = max(res, countOnes+countZeros)
 	}
 
-	return max
+	return res
 }
