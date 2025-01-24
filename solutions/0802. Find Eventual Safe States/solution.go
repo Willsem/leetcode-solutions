@@ -41,9 +41,7 @@ func eventualSafeNodes(graph [][]int) []int {
 	result := make([]int, 0)
 	for i, node := range typeOfNode {
 		switch node {
-		case safe:
-			fallthrough
-		case terminal:
+		case safe, terminal:
 			result = append(result, i)
 		}
 	}
