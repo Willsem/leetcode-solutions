@@ -1,13 +1,15 @@
+import "strings"
+
 func findDifferentBinaryString(nums []string) string {
-	ans := ""
+	result := &strings.Builder{}
 	for i := 0; i < len(nums); i++ {
 		curr := nums[i][i]
 		if curr == '0' {
-			ans += "1"
+			result.WriteString("1")
 		} else {
-			ans += "0"
+			result.WriteString("0")
 		}
 	}
 
-	return ans
+	return result.String()
 }
