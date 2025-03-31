@@ -1,10 +1,9 @@
 import "sort"
 
 func putMarbles(weights []int, k int) int64 {
-	n := len(weights)
-	pairWeights := make([]int, n-1)
+	pairWeights := make([]int, len(weights)-1)
 
-	for i := 0; i < n-1; i++ {
+	for i := 0; i < len(weights)-1; i++ {
 		pairWeights[i] = weights[i] + weights[i+1]
 	}
 
