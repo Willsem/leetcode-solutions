@@ -1,29 +1,18 @@
-const (
-	POINTS     = 0
-	BRAINPOWER = 1
-)
-
 func mostPoints(questions [][]int) int64 {
-	dp := make([]int64, len(questions)+1)
+	dp := make([]int, len(questions)+1)
 
 	for i := len(questions) - 1; i >= 0; i-- {
-		dp[i] = int64(questions[i][POINTS])
+		points, brainpower := questions[i][0], questions[i][1]
 
-		nextQuestion := i + questions[i][BRAINPOWER] + 1
-		if nextQuestion < len(questions) {
-			dp[i] += dp[nextQuestion]
+		dp[i] = points
+
+		next := i + brainpower + 1
+		if next < len(questions) {
+			dp[i] += dp[next]
 		}
 
 		dp[i] = max(dp[i], dp[i+1])
 	}
 
-	return dp[0]
-}
-
-func max(a, b int64) int64 {
-	if a > b {
-		return a
-	}
-
-	return b
+	return int64(dp[0])
 }
