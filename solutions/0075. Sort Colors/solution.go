@@ -6,7 +6,7 @@ func sortColors(nums []int) {
 
 	numsI := 0
 	for value, count := range counts {
-		for i := 0; i < count; i++ {
+		for range count {
 			nums[numsI] = value
 			numsI++
 		}
